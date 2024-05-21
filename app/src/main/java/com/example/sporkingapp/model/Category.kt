@@ -1,10 +1,8 @@
 package com.example.sporkingapp.model
 
-data class Field (
+data class Category(
     val id: Int,
     val name: String,
-    val price: String,
-    val distance: Double,
-    val rating: Int,
     val photo: Int,
+    val fields: List<Field>
 )

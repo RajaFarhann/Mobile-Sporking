@@ -22,40 +22,66 @@ import com.example.sporkingapp.ui.theme.SporkingAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar() {
+fun TopBar(
+    showTitle: Boolean = true,
+    showBackButton: Boolean = false,
+    onBackClick: () -> Unit = {},
+    showProfileImage: Boolean = true,
+    profileImageResId: Int = R.drawable.icon_profile,
+    showChatIcon: Boolean = true,
+    showNotificationIcon: Boolean = true
+) {
     TopAppBar(
         title = {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.icon_profile),
-                    contentDescription = "Profile",
-                    modifier = Modifier
-                        .size(40.dp)
-                        .padding(end = 8.dp)
-                )
-                Text(
-                    text = "Halo, Aan",
-                    color = Color.White,
-                    fontSize = 18.sp
+                if (showBackButton) {
+                    IconButton(onClick = onBackClick) {
+                        Image(
+                            painter = painterResource(id = R.drawable.icon_arrow_back),
+                            contentDescription = "Back",
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                }
+                if (showProfileImage) {
+                    Image(
+                        painter = painterResource(id = profileImageResId),
+                        contentDescription = "Profile",
+                        modifier = Modifier
+                            .size(40.dp)
+                            .padding(end = 8.dp)
                     )
+                }
+                if (showTitle) {
+                    Text(
+                        text = "Halo, Aan",
+                        color = Color.White,
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(start = if (showBackButton) 8.dp else 0.dp)
+                    )
+                }
             }
         },
         actions = {
-            IconButton(onClick = { /* TODO: Handle bell icon click */ }) {
-                Image(
-                    painter = painterResource(id = R.drawable.icon_chat ),
-                    contentDescription = "Notification",
-                    modifier = Modifier.size(28.dp)
-                )
+            if (showChatIcon) {
+                IconButton(onClick = { /* TODO: Handle chat icon click */ }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.icon_chat),
+                        contentDescription = "Chat",
+                        modifier = Modifier.size(28.dp)
+                    )
+                }
             }
-            IconButton(onClick = { /* TODO: Handle bell icon click */ }) {
-                Image(
-                    painter = painterResource(id = R.drawable.icon_notification ),
-                    contentDescription = "Notification",
-                    modifier = Modifier.size(28.dp)
-                )
+            if (showNotificationIcon) {
+                IconButton(onClick = { /* TODO: Handle notification icon click */ }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.icon_notification),
+                        contentDescription = "Notification",
+                        modifier = Modifier.size(28.dp)
+                    )
+                }
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFFFD7900))
@@ -64,8 +90,24 @@ fun TopBar() {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun TopBarPreview() {
     SporkingAppTheme {
-        TopBar()
+        TopBar(
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TopBarWithBackButtonPreview() {
+    SporkingAppTheme {
+        TopBar(
+            showTitle = false,
+            showBackButton = true,
+            onBackClick = { /* TODO: Handle back button click */ },
+            showProfileImage = false,
+            showChatIcon = false,
+            showNotificationIcon = false
+        )
     }
 }
