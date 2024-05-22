@@ -1,9 +1,8 @@
-package com.example.sporkingapp
+package com.example.sporkingapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.sporkingapp.presentation.MainScreen
 import com.example.sporkingapp.ui.theme.SporkingAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -11,7 +10,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SporkingAppTheme {
-                MainScreen()
+                SporkingApp()
             }
         }
     }

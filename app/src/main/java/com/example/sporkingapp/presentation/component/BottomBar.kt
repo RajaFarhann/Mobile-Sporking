@@ -16,17 +16,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.sporkingapp.R
-import com.example.sporkingapp.ui.theme.SporkingAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomBar(
-    selectedTab: Int,
-    onTabSelected: (Int) -> Unit // A callback function to handle tab selection
+    navController: NavController,
+    currentRoute: String
 ) {
     val orangeColor = Color(0xFFFD7900)
     val textColor = Color(0xFF8F8C95)
@@ -37,8 +36,8 @@ fun BottomBar(
         contentPadding = PaddingValues(16.dp) // Padding konten dalam bottom app bar
     ) {
         IconButton(
-            onClick = { onTabSelected(0) },
-            modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
+            onClick = { navController.navigate("beranda") },
+            modifier = Modifier.weight(1f)
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(), // Atau sesuaikan dengan kebutuhan
@@ -49,18 +48,18 @@ fun BottomBar(
                     painter = painterResource(id = R.drawable.icon_home),
                     contentDescription = "Home",
                     modifier = Modifier.size(20.dp),
-                    colorFilter = ColorFilter.tint(if (selectedTab == 0) orangeColor else textColor)
+                    colorFilter = ColorFilter.tint(if (currentRoute == "beranda") orangeColor else textColor)
                 )
                 Text(
                     text = "Beranda",
                     fontSize = 10.sp,
-                    color = if (selectedTab == 0) orangeColor else textColor
+                    color = if (currentRoute == "beranda") orangeColor else textColor
                 )
             }
         }
 
         IconButton(
-            onClick = { onTabSelected(1) },
+            onClick = { navController.navigate("category") },
             modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
         ) {
             Column(
@@ -72,18 +71,18 @@ fun BottomBar(
                     painter = painterResource(id = R.drawable.icon_field),
                     contentDescription = "Field",
                     modifier = Modifier.size(20.dp),
-                    colorFilter = ColorFilter.tint(if (selectedTab == 1) orangeColor else textColor)
+                    colorFilter = ColorFilter.tint(if (currentRoute == "category") orangeColor else textColor)
                 )
                 Text(
                     text = "Lapangan",
                     fontSize = 10.sp,
-                    color = if (selectedTab == 1) orangeColor else textColor
+                    color = if (currentRoute == "category") orangeColor else textColor
                 )
             }
         }
 
         IconButton(
-            onClick = { onTabSelected(2) },
+            onClick = { navController.navigate("news") },
             modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
         ) {
             Column(
@@ -95,18 +94,18 @@ fun BottomBar(
                     painter = painterResource(id = R.drawable.icon_soccer_ball),
                     contentDescription = "News",
                     modifier = Modifier.size(20.dp),
-                    colorFilter = ColorFilter.tint(if (selectedTab == 2) orangeColor else textColor)
+                    colorFilter = ColorFilter.tint(if (currentRoute == "news") orangeColor else textColor)
                 )
                 Text(
                     text = "News",
                     fontSize = 10.sp,
-                    color = if (selectedTab == 2) orangeColor else textColor
+                    color = if (currentRoute == "news") orangeColor else textColor
                 )
             }
         }
 
         IconButton(
-            onClick = { onTabSelected(3) },
+            onClick = { navController.navigate("booking") },
             modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
         ) {
             Column(
@@ -118,18 +117,18 @@ fun BottomBar(
                     painter = painterResource(id = R.drawable.icon_calender),
                     contentDescription = "Pemesanan",
                     modifier = Modifier.size(20.dp),
-                    colorFilter = ColorFilter.tint(if (selectedTab == 3) orangeColor else textColor)
+                    colorFilter = ColorFilter.tint(if (currentRoute == "booking") orangeColor else textColor)
                 )
                 Text(
                     text = "Pemesanan",
                     fontSize = 10.sp,
-                    color = if (selectedTab == 3) orangeColor else textColor
+                    color = if (currentRoute == "booking") orangeColor else textColor
                 )
             }
         }
 
         IconButton(
-            onClick = { onTabSelected(4) },
+            onClick = { navController.navigate("komunitas") },
             modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
         ) {
             Column(
@@ -141,22 +140,22 @@ fun BottomBar(
                     painter = painterResource(id = R.drawable.icon_person),
                     contentDescription = "Komunitas",
                     modifier = Modifier.size(20.dp),
-                    colorFilter = ColorFilter.tint(if (selectedTab == 4) orangeColor else textColor)
+                    colorFilter = ColorFilter.tint(if (currentRoute == "komunitas") orangeColor else textColor)
                 )
                 Text(
                     text = "Komunitas",
                     fontSize = 10.sp,
-                    color = if (selectedTab == 4) orangeColor else textColor
+                    color = if (currentRoute == "komunitas") orangeColor else textColor
                 )
             }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun BottomBarPreview() {
-    SporkingAppTheme {
-        BottomBar(selectedTab = 0) {}
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun BottomBarPreview() {
+//    SporkingAppTheme {
+//        BottomBar() {}
+//    }
+//}
