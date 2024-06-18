@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    //color custom
+    <color name="blackfont">#3F414E</color>
+    <color name="primary">#F4F2F2</color>
+    <color name="bgcolor">#F4F2F2</color>
+    <color name="orange_7900">#FD7900</color>
+    <color name="second_button">#E9E9E9</color>
+    <color name="clickable_blueish">#5BC4E4</color>
+    <color name="textcolor">#8F8C95</color>
+
+
 </resources>
