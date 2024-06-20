@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.sporkingapp.navigation.Screen
-import com.example.sporkingapp.data.DummyData
+import com.example.sporkingapp.data.local.dummy.DummyData
 import com.example.sporkingapp.model.News
 import com.example.sporkingapp.presentation.screen.news.component.newsColumn
 

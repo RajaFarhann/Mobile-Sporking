@@ -1,4 +1,4 @@
-package com.example.sporkingapp.data
+package com.example.sporkingapp.data.local.dummy
 
 import com.example.sporkingapp.R
 import com.example.sporkingapp.model.Category

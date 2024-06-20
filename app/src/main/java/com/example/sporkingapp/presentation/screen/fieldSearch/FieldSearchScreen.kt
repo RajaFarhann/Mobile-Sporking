@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.sporkingapp.data.DummyData
+import com.example.sporkingapp.data.local.dummy.DummyData
 import com.example.sporkingapp.model.Category
 import com.example.sporkingapp.presentation.component.bar.TopBar
 import com.example.sporkingapp.presentation.screen.fieldSearch.component.CategorySectionSearch

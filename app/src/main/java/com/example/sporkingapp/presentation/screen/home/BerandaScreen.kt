@@ -30,8 +30,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.example.sporkingapp.R
-import com.example.sporkingapp.data.DummyData
+import com.example.sporkingapp.data.local.dummy.DummyData
 import com.example.sporkingapp.model.Category
 import com.example.sporkingapp.presentation.component.bar.TopBar
 import com.example.sporkingapp.presentation.screen.home.component.ButtonFilter
@@ -47,6 +48,7 @@ fun BerandaScreen(
     onNavigateToProfile: () -> Unit,
     onNavigateToDetailField: () -> Unit
 ) {
+    val navController = rememberNavController()
     Scaffold(
         topBar = { TopBar(
             onProfileClick = onNavigateToProfile,

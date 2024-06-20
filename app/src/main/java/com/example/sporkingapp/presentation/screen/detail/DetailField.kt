@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.sporkingapp.R
 import com.example.sporkingapp.presentation.component.bar.TopBar
 import com.example.sporkingapp.presentation.screen.home.component.RatingBar
@@ -41,6 +42,7 @@ fun DetailScreen(
     modifier: Modifier = Modifier,
     onNavigateToBerandaScreen: () -> Unit
 ) {
+    val navController = rememberNavController()
     Scaffold(
         topBar = {
             TopBar(
@@ -51,6 +53,9 @@ fun DetailScreen(
                 showChatIcon = false,
                 showNotificationIcon = false
             )
+        },
+        bottomBar = {
+                    BottomBarDetail(navController = navController)
         },
         modifier = modifier
     ) { innerPadding ->

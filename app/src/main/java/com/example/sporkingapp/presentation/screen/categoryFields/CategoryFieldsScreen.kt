@@ -18,7 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.sporkingapp.data.DummyData
+import androidx.navigation.compose.rememberNavController
+import com.example.sporkingapp.data.local.dummy.DummyData
 import com.example.sporkingapp.model.Category
 import com.example.sporkingapp.presentation.screen.categoryFields.component.CategoryFieldsItem
 import com.example.sporkingapp.ui.theme.SporkingAppTheme
@@ -28,7 +29,7 @@ fun CategoryFieldsScreen(
     modifier: Modifier = Modifier,
     categories: List<Category> = DummyData.categories
 ) {
-
+    val navController = rememberNavController()
     Scaffold(
         modifier = modifier
     ) { innerPadding ->

@@ -29,7 +29,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.sporkingapp.R
-import com.example.sporkingapp.data.DummyData
+import com.example.sporkingapp.data.local.dummy.DummyData
 import com.example.sporkingapp.model.News
 import com.example.sporkingapp.navigation.Screen
 import com.example.sporkingapp.presentation.component.bar.TopBar
