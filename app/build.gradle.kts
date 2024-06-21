@@ -1,6 +1,12 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
+//    id("com.google.dagger.hilt.android")
+    id ("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -79,4 +85,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.48.1")
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation("com.google.android.gms:play-services-auth:21.2.0")
+
+// Tambahkan dependensi Hilt Compiler
+    kapt("com.google.dagger:hilt-compiler:2.48.1")
 }

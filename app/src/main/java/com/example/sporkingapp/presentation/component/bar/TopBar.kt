@@ -59,7 +59,7 @@ fun TopBar(
                 }
                 if (showTitle) {
                     Text(
-                        text = "Halo, Aan",
+                        text = "Halo",
                         color = Color.White,
                         fontSize = 18.sp,
                         modifier = Modifier.padding(start = if (showBackButton) 8.dp else 0.dp)

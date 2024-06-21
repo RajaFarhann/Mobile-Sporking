@@ -26,5 +26,4 @@ class DataStore (private val context: Context){
     suspend fun clearStatus() = context.dataStore.edit { preferences ->
         preferences.remove(STATUS_LOGIN_KEY)
     }
-
 }

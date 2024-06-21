@@ -39,7 +39,7 @@ fun OnboardingScreen(navController: NavController){
             )
             Spacer(modifier = Modifier.height(300.dp))
             ButtonComponent(value = stringResource(id = R.string.lanjut),
-                onTaskClick = { navController.navigate(Screen.Beranda.route)}
+                onTaskClick = { navController.navigate(Screen.Login.route)}
             )
         }
     }

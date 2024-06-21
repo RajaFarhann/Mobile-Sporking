@@ -17,15 +17,18 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.sporkingapp.navigation.Screen
 import com.example.sporkingapp.presentation.component.bar.BottomBar
+import com.example.sporkingapp.presentation.screen.agreement.AgreementScreen
 import com.example.sporkingapp.presentation.screen.booking.BookingScreen
 import com.example.sporkingapp.presentation.screen.categoryFields.CategoryFieldsScreen
 import com.example.sporkingapp.presentation.screen.detail.DetailScreen
 import com.example.sporkingapp.presentation.screen.fieldSearch.FieldSearchScreen
 import com.example.sporkingapp.presentation.screen.home.BerandaScreen
+import com.example.sporkingapp.presentation.screen.login.LoginScreen
 import com.example.sporkingapp.presentation.screen.news.newsDetailScreen
 import com.example.sporkingapp.presentation.screen.news.newsScreen
 import com.example.sporkingapp.presentation.screen.onboarding.OnboardingScreen
 import com.example.sporkingapp.presentation.screen.profile.ProfileScreen
+import com.example.sporkingapp.presentation.screen.signup.signUpScreen
 import com.example.sporkingapp.presentation.screen.splash.SplashScreen
 import com.example.sporkingapp.ui.theme.SporkingAppTheme
 import com.example.sporkingapp.utils.shouldShowBottomBar
@@ -56,6 +59,18 @@ fun SporkingApp() {
                 }
                 composable(route = Screen.Onboarding.route){
                     OnboardingScreen(navController)
+                }
+                composable(Screen.Login.route){
+                    LoginScreen(navController)
+                }
+                composable(Screen.SignIn.route){
+                    LoginScreen(navController)
+                }
+                composable(Screen.SignUp.route){
+                    signUpScreen(navController)
+                }
+                composable(Screen.Agreement.route){
+                    AgreementScreen()
                 }
                 composable(route = Screen.Beranda.route) {
                     BerandaScreen(

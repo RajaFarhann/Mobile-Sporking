@@ -43,7 +43,7 @@ fun SplashScreen(navController: NavController){
             )
             delay(2000L)
             if (statusLoggedIn.value) {
-                navController.navigate(Screen.Onboarding.route){
+                navController.navigate(Screen.Beranda.route){
                     popUpTo(Screen.Splash.route){
                         inclusive = true
                     }
