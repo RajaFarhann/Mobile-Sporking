@@ -15,17 +15,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import com.example.sporkingapp.data.local.dummy.DummyData
-import com.example.sporkingapp.model.Category
+import com.example.sporkingapp.model.Field
+import com.example.sporkingapp.navigation.Screen
 import com.example.sporkingapp.presentation.component.bar.TopBar
-import com.example.sporkingapp.presentation.screen.fieldSearch.component.CategorySectionSearch
+import com.example.sporkingapp.presentation.screen.fieldSearch.component.CardSearch
 
 @Composable
 fun FieldSearchScreen(
     modifier: Modifier = Modifier,
-    categories: List<Category> = DummyData.categories,
+    field: List<Field> = DummyData.FieldList,
     onNavigateToBerandaScreen: () -> Unit
 ) {
+    val navController = rememberNavController()
     Scaffold(
         topBar = {
             TopBar(
@@ -58,8 +61,12 @@ fun FieldSearchScreen(
                         .padding(horizontal = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(-20.dp) // Adjust spacing here
                 ) {
-                    items(categories) { category ->
-                        CategorySectionSearch(category)
+                    items(field, key = {it.id}) {
+                        CardSearch(
+                            field = it
+                        ){ fieldId ->
+                            navController.navigate(Screen.Detail.route + "/$fieldId")
+                        }
                     }
                 }
             }

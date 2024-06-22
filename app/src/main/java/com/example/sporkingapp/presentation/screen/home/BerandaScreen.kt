@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -33,20 +33,20 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.example.sporkingapp.R
 import com.example.sporkingapp.data.local.dummy.DummyData
-import com.example.sporkingapp.model.Category
+import com.example.sporkingapp.model.Field
+import com.example.sporkingapp.navigation.Screen
 import com.example.sporkingapp.presentation.component.bar.TopBar
 import com.example.sporkingapp.presentation.screen.home.component.ButtonFilter
-import com.example.sporkingapp.presentation.screen.home.component.CategorySection
+import com.example.sporkingapp.presentation.screen.home.component.CardHome
 import com.example.sporkingapp.presentation.screen.home.component.SearchAndDropdown
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BerandaScreen(
     modifier: Modifier = Modifier,
-    categories: List<Category> = DummyData.categories,
+    lapangan: List<Field> = DummyData.FieldList,
     onNavigateToFieldSearch: () -> Unit,
     onNavigateToProfile: () -> Unit,
-    onNavigateToDetailField: () -> Unit
 ) {
     val navController = rememberNavController()
     Scaffold(
@@ -124,17 +124,16 @@ fun BerandaScreen(
                         )
                     }
                 }
-                LazyColumn(
+                LazyRow(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    items(categories) { category ->
-                        CategorySection(
-                            category = category,
-                            onNavigateToDetailField = onNavigateToDetailField
-                            )
+                    items(lapangan, key = {it.id}) {
+                        CardHome(field = it){ lapangan ->
+                            navController.navigate(Screen.Detail.route + "/$lapangan")
+                        }
                     }
                 }
             }

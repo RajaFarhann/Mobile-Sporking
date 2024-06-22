@@ -2,6 +2,7 @@ package com.example.sporkingapp.presentation.screen.fieldSearch.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,19 +26,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.sporkingapp.R
 import com.example.sporkingapp.model.Field
 import com.example.sporkingapp.presentation.screen.home.component.RatingBar
-import com.example.sporkingapp.ui.theme.SporkingAppTheme
 
 @Composable
 fun CardSearch(
     field: Field,
     modifier: Modifier = Modifier,
-//    onItemClicked: (Int) -> Unit
+    onItemClicked: (Int) -> Unit
 ) {
     val warna = 0xFFFD7900
 
@@ -46,6 +44,7 @@ fun CardSearch(
         modifier = modifier
             .padding(16.dp)
             .wrapContentHeight()
+            .clickable { onItemClicked(field.id) }
     ) {
         Row(
             modifier = Modifier
@@ -123,19 +122,20 @@ fun CardSearch(
     }
 }
 
-@Preview(showBackground = false)
-@Composable
-fun CardSearchPreview() {
-    SporkingAppTheme {
-        CardSearch(
-            field = Field(
-                id = 1,
-                name = "Lapangan Futsal Ikan Daun",
-                price = "167.000,00",
-                distance = 0.1,
-                rating = 5,
-                photo = R.drawable.lapangan_futsal_ikan_daun,
-            )
-        )
-    }
-}
+//@Preview(showBackground = false)
+//@Composable
+//fun CardSearchPreview() {
+//    SporkingAppTheme {
+//        CardSearch(
+//            field = Field(
+//                id = 1,
+//                name = "Lapangan Futsal Ikan Daun",
+//                price = "167.000,00",
+//                distance = 0.1,
+//                rating = 5,
+//                photo = R.drawable.lapangan_futsal_ikan_daun,
+//                category = "Futsal"
+//            )
+//        )
+//    }
+//}

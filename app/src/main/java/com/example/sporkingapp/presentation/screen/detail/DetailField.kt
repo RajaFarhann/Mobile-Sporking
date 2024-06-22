@@ -2,6 +2,7 @@ package com.example.sporkingapp.presentation.screen.detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,18 +32,39 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
 import com.example.sporkingapp.R
+import com.example.sporkingapp.data.local.dummy.DummyData
+import com.example.sporkingapp.model.Field
+import com.example.sporkingapp.navigation.Screen
 import com.example.sporkingapp.presentation.component.bar.TopBar
 import com.example.sporkingapp.presentation.screen.home.component.RatingBar
 
 @Composable
-fun DetailScreen(
+fun FieldDetailScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    lapangan: Int?
+
+){
+    val newLapanganList = DummyData.FieldList.filter { field ->
+        field.id == lapangan
+    }
+
+    Column (
+        modifier = Modifier
+    ){
+        FieldDetailContent(newLapanganList = newLapanganList, navController = navController, onNavigateToBerandaScreen = { navController.navigate(Screen.Beranda.route) })
+    }
+}
+
+@Composable
+private fun FieldDetailContent(
+    newLapanganList: List<Field>,
+    navController: NavController,
     modifier: Modifier = Modifier,
     onNavigateToBerandaScreen: () -> Unit
 ) {
-    val navController = rememberNavController()
     Scaffold(
         topBar = {
             TopBar(
@@ -55,7 +77,7 @@ fun DetailScreen(
             )
         },
         bottomBar = {
-                    BottomBarDetail(navController = navController)
+            BottomBarDetail(navController = navController)
         },
         modifier = modifier
     ) { innerPadding ->
@@ -86,7 +108,7 @@ fun DetailScreen(
                         .align(Alignment.CenterHorizontally)
                 ) {
                     Text(
-                        text = "SPORTHILL",
+                        text = newLapanganList[0].name,
                         fontSize = 20.sp,
                         color = Color(0xFFFD7900),
                         fontWeight = FontWeight.Bold,
@@ -114,6 +136,9 @@ fun DetailScreen(
                     modifier = Modifier
                         .size(width = 360.dp, height = 200.dp)
                         .align(Alignment.CenterHorizontally)
+                        .clickable {
+                            navController.navigate(Screen.Maps.route)
+                        }
                 )
                 Divider(
                     color = Color(0xFFDFDFDF),
@@ -179,10 +204,9 @@ fun DetailScreen(
     }
 }
 
-
 @Composable
 fun BottomBarDetail(
-    navController: NavHostController
+    navController: NavController
 ) {
     Box(
         modifier = Modifier
@@ -230,18 +254,3 @@ fun BottomBarDetail(
         }
     }
 }
-
-
-//@Preview(showBackground = true)
-//@Composable
-//fun PlaygroundDetailsPreview() {
-//    DetailScreen(
-//    )
-//}
-
-//@Preview(showBackground = true)
-//@Composable
-//fun BottomBarDetailPreview() {
-//    BottomBarDetail(
-//    )
-//}

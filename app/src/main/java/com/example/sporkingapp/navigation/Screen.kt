@@ -6,7 +6,7 @@ sealed class Screen(val route: String) {
     data object Category : Screen("category")
     data object Pemesanan : Screen("pemesanan")
     data object Komunitas : Screen("komunitas")
-    data object Detail : Screen("detail_field}")
+    data object Detail : Screen("field_detail")
     data object NewsDetail: Screen("news_detail")
     data object NewsScreen: Screen("news_screen")
     data object Onboarding: Screen("onboarding")
@@ -19,4 +19,5 @@ sealed class Screen(val route: String) {
     data object ChangePasswordScreen: Screen("change_password")
     data object AccountScreen: Screen("account_screen")
     data object SecurityNotify: Screen("security_notify")
+    data object Maps : Screen("maps")
 }

@@ -1,12 +1,11 @@
 package com.example.sporkingapp.data.local.dummy
 
 import com.example.sporkingapp.R
-import com.example.sporkingapp.model.Category
 import com.example.sporkingapp.model.Field
 import com.example.sporkingapp.model.News
 
 object DummyData {
-    val futsalFields = listOf(
+    val FieldList = listOf(
         Field(
             id = 1,
             name = "Lapangan Futsal Ikan Daun",
@@ -14,6 +13,7 @@ object DummyData {
             distance = 0.1,
             rating = 5,
             photo = R.drawable.lapangan_futsal_ikan_daun,
+            category = "Futsal"
         ),
         Field(
             id = 2,
@@ -22,6 +22,7 @@ object DummyData {
             distance = 1.5,
             rating = 3,
             photo = R.drawable.lapangan_futsal_m_barca,
+            category = "Futsal"
         ),
         Field(
             id = 3,
@@ -30,6 +31,7 @@ object DummyData {
             distance = 2.2,
             rating = 2,
             photo = R.drawable.lapangan_futsal_hang_jebat_batam,
+            category = "Futsal"
         ),
         Field(
             id = 4,
@@ -38,6 +40,7 @@ object DummyData {
             distance = 1.2,
             rating = 5,
             photo = R.drawable.lapangan_futsal_sport_hill_centre,
+            category = "Futsal"
         ),
         Field(
             id = 5,
@@ -46,138 +49,116 @@ object DummyData {
             distance = 3.2,
             rating = 4,
             photo = R.drawable.lapangan_futsal_go_futsal,
-        )
-    )
-
-    val badmintonFields = listOf(
+            category = "Futsal"
+        ),
         Field(
-            id = 1,
+            id = 6,
             name = "Gor Bulu Tangkis Orchid Park",
             price = "170.000,00",
             distance = 8.0,
             rating = 3,
             photo = R.drawable.lapangan_gor_orchid_park,
+            category = "BuluTangkis"
         ),
         Field(
-            id = 2,
+            id = 7,
             name = "GOR Badminton Batu Batam",
             price = "120.000,00",
             distance = 7.2,
             rating = 1,
             photo = R.drawable.lapangan_gor_batu_batam,
+            category = "BuluTangkis"
         ),
         Field(
-            id = 3,
+            id = 8,
             name = "Elite Badminton",
             price = "130.000,00",
             distance = 1.5,
             rating = 4,
             photo = R.drawable.lapangan_gor_elite_badminton,
+            category = "BuluTangkis"
         ),
         Field(
-            id = 4,
+            id = 9,
             name = "GOR Badminton Temenggung",
             price = "140.000,00",
             distance = 2.5,
             rating = 2,
             photo = R.drawable.lapangan_gor_temenggung,
+            category = "BuluTangkis"
         ),
         Field(
-            id = 5,
+            id = 10,
             name = "GOR Bulu tangkis Tiban",
             price = "160.000,00",
             distance = 10.0,
             rating = 3,
             photo = R.drawable.lapangan_gor_tiban,
-        )
-    )
-    val sepakBolaFields = listOf(
+            category = "BuluTangkis"
+        ),
         Field(
-            id = 1,
+            id = 11,
             name = "Batam Arena MiniSoccer",
             price = "270.000,00",
             distance = 9.0,
             rating = 4,
             photo = R.drawable.lapangan_sepak_bola_batam_arena,
+            category = "MiniSoccer"
         ),
         Field(
-            id = 2,
+            id = 12,
             name = "Alpha Mini Soccer",
             price = "220.000,00",
             distance = 2.2,
             rating = 3,
             photo = R.drawable.lapangan_sepak_bola_alpha,
-        )
-    )
-
-    val basketFields = listOf(
+            category = "MiniSoccer"
+        ),
         Field(
-            id = 1,
+            id = 13,
             name = "Palm Spring Basketball Court",
             price = "150.000,00",
             distance = 2.0,
             rating = 4,
             photo = R.drawable.lapangan_basket_palm_spring,
+            category = "Basket"
         ),
         Field(
-            id = 2,
+            id = 14,
             name = "MJ ARENA",
             price = "220.000,00",
             distance = 4.2,
             rating = 5,
             photo = R.drawable.lapangan_basket_mj_arena,
+            category = "Basket"
         ),
         Field(
-            id = 3,
+            id = 15,
             name = "Guard Arena",
             price = "210.000,00",
             distance = 1.5,
             rating = 4,
             photo = R.drawable.lapangan_basket_guard_arena,
+            category = "Basket"
         ),
         Field(
-            id = 4,
+            id = 16,
             name = "T.M.Arena",
             price = "200.000,00",
             distance = 1.5,
             rating = 4,
             photo = R.drawable.lapangan_basket_tm_arena,
+            category = "Basket"
         ),
         Field(
-            id = 5,
+            id = 17,
             name = "Hi-Test Arena",
             price = "260.000,00",
             distance = 10.0,
             rating = 5,
             photo = R.drawable.lapangan_basket_hitest_arena,
+            category = "Basket"
         )
-    )
-
-    val categories = listOf(
-        Category(
-            id = 1,
-            name = "Futsal",
-            photo = R.drawable.category_futsal,
-            fields = futsalFields
-        ),
-        Category(
-            id = 2,
-            name = "Badminton",
-            photo = R.drawable.category_badminton,
-            fields = badmintonFields
-        ),
-        Category(
-            id = 3,
-            name = "Basket",
-            photo = R.drawable.category_basket,
-            fields = basketFields
-        ),
-        Category(
-            id = 4,
-            name = "Sepak Bola",
-            photo = R.drawable.category_sepakbola,
-            fields = sepakBolaFields
-        ),
     )
     val newsList = listOf(
         News(

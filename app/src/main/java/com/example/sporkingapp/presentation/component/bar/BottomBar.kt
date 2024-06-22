@@ -145,32 +145,31 @@ fun BottomBar(
                 )
             }
         }
-
-        IconButton(
-            onClick = {
-                selectedTab = 4
-                navController.navigate(Screen.ProfileScreen.route)
-            },
-            modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
-        ) {
-            Column(
-                modifier = Modifier.fillMaxWidth(), // Atau sesuaikan dengan kebutuhan
-                horizontalAlignment = Alignment.CenterHorizontally, // Menjadikan semua anak di dalam Column terpusat secara horizontal
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.icon_person),
-                    contentDescription = "Komunitas",
-                    modifier = Modifier.size(20.dp),
-                    colorFilter = ColorFilter.tint(if (selectedTab == 4) orangeColor else textColor)
-                )
-                Text(
-                    text = "Komunitas",
-                    fontSize = 10.sp,
-                    color = if (selectedTab == 4) orangeColor else textColor
-                )
-            }
-        }
+//        IconButton(
+//            onClick = {
+//                selectedTab = 4
+//                navController.navigate(Screen.Maps.route)
+//            },
+//            modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
+//        ) {
+//            Column(
+//                modifier = Modifier.fillMaxWidth(), // Atau sesuaikan dengan kebutuhan
+//                horizontalAlignment = Alignment.CenterHorizontally, // Menjadikan semua anak di dalam Column terpusat secara horizontal
+//                verticalArrangement = Arrangement.spacedBy(4.dp)
+//            ) {
+//                Image(
+//                    painter = painterResource(id = R.drawable.icon_person),
+//                    contentDescription = "Komunitas",
+//                    modifier = Modifier.size(20.dp),
+//                    colorFilter = ColorFilter.tint(if (selectedTab == 4) orangeColor else textColor)
+//                )
+//                Text(
+//                    text = "Komunitas",
+//                    fontSize = 10.sp,
+//                    color = if (selectedTab == 4) orangeColor else textColor
+//                )
+//            }
+//        }
     }
 }
 

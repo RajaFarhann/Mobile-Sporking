@@ -30,16 +30,16 @@ import com.example.sporkingapp.model.Field
 fun CardHome(
     field: Field,
     modifier: Modifier = Modifier,
-    onNavigateToDetailField: () -> Unit
+    onItemClicked: (Int) -> Unit
 ) {
     var warna = 0xFFFD7900
 
     Card(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
+            .clickable {onItemClicked(field.id)}
             .padding(16.dp)
             .wrapContentHeight()
-            .clickable { onNavigateToDetailField() }
     ) {
         Box(
             modifier = Modifier
@@ -112,6 +112,7 @@ fun CardHome(
 //fun CardHomePreview() {
 //    SporkingAppTheme {
 //        CardHome(
+////            onNavigateToDetailField = onNavigateToDetailField,
 //            field = Field(
 //                id = 1,
 //                name = "Lapangan Futsal Ikan Daun",
@@ -119,6 +120,7 @@ fun CardHome(
 //                distance = 0.1,
 //                rating = 5,
 //                photo = R.drawable.lapangan_futsal_ikan_daun,
+//                category = "Futsal"
 //            )
 //        )
 //    }

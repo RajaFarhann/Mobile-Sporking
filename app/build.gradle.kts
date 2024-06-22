@@ -72,20 +72,36 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.coil.compose)
     implementation(libs.androidx.navigation.compose)
+
+    // Coil Image
+    implementation(libs.coil.compose)
+
+    // Extended Icons
     implementation(libs.androidx.material.icons.extended)
+
+    // Data Store
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
     implementation(libs.androidx.preference.ktx)
+
+    //Firebase
     implementation(platform(libs.firebase.bom))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
+
+    // Hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+    kapt("com.google.dagger:hilt-compiler:2.48.1")
+
+    // Google Auth
     implementation("com.google.android.gms:play-services-auth:21.2.0")
 
-// Tambahkan dependensi Hilt Compiler
-    kapt("com.google.dagger:hilt-compiler:2.48.1")
+    // Maps
+    implementation("com.google.maps.android:maps-compose:4.3.3")
+
 }

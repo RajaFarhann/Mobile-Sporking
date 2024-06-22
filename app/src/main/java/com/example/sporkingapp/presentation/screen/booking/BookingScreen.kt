@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sporkingapp.presentation.screen.booking.component.CardBooking
+import com.example.sporkingapp.presentation.screen.whatsapp.WhatsAppRedirect
 
 @Composable
 fun BookingScreen(
@@ -64,6 +65,7 @@ fun BookingScreen(
 
                 // CardBooking di bawahnya
                 CardBooking()
+                WhatsAppRedirect(phoneNumber = "+6281319171765", message = "Halo, saya ingin menyewa lapangan")
             }
 
             // Position Dividers outside the Column to span full width

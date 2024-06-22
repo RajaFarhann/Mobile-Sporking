@@ -48,8 +48,7 @@ fun newsDetailScreen(
     Column (
         modifier = Modifier
     ){
-        detailNewsContent(newestNewsList = newestNewsList, navController = navController, onNavigateToNewsScreen = { navController.navigate(
-            Screen.NewsScreen.route) })
+        detailNewsContent(newestNewsList = newestNewsList, navController = navController, onNavigateToNewsScreen = { navController.navigate(Screen.NewsScreen.route) })
     }
 }
 

@@ -20,10 +20,11 @@ import com.example.sporkingapp.presentation.component.bar.BottomBar
 import com.example.sporkingapp.presentation.screen.agreement.AgreementScreen
 import com.example.sporkingapp.presentation.screen.booking.BookingScreen
 import com.example.sporkingapp.presentation.screen.categoryFields.CategoryFieldsScreen
-import com.example.sporkingapp.presentation.screen.detail.DetailScreen
+import com.example.sporkingapp.presentation.screen.detail.FieldDetailScreen
 import com.example.sporkingapp.presentation.screen.fieldSearch.FieldSearchScreen
 import com.example.sporkingapp.presentation.screen.home.BerandaScreen
 import com.example.sporkingapp.presentation.screen.login.LoginScreen
+import com.example.sporkingapp.presentation.screen.maps.MapsScreen
 import com.example.sporkingapp.presentation.screen.news.newsDetailScreen
 import com.example.sporkingapp.presentation.screen.news.newsScreen
 import com.example.sporkingapp.presentation.screen.onboarding.OnboardingScreen
@@ -75,15 +76,11 @@ fun SporkingApp() {
                 composable(route = Screen.Beranda.route) {
                     BerandaScreen(
                         onNavigateToFieldSearch = { navController.navigate(Screen.FieldSearch.route) },
-                        onNavigateToDetailField = { navController.navigate(Screen.Detail.route) },
                         onNavigateToProfile = { navController.navigate(Screen.ProfileScreen.route) }
                     )
                 }
                 composable(route = Screen.FieldSearch.route) {
                     FieldSearchScreen(onNavigateToBerandaScreen = { navController.navigate(Screen.Beranda.route) })
-                }
-                composable(route = Screen.Detail.route) {
-                    DetailScreen(onNavigateToBerandaScreen = { navController.navigate(Screen.Beranda.route) })
                 }
                 composable(route = Screen.Category.route) {
                     CategoryFieldsScreen()
@@ -94,7 +91,6 @@ fun SporkingApp() {
                 composable(route = Screen.Komunitas.route) {
                     BerandaScreen(
                         onNavigateToFieldSearch = { navController.navigate(Screen.FieldSearch.route) },
-                        onNavigateToDetailField = { navController.navigate(Screen.Detail.route) },
                         onNavigateToProfile = { navController.navigate(Screen.ProfileScreen.route) },
                     )
                 }
@@ -107,6 +103,15 @@ fun SporkingApp() {
                         berita = navBackStackEntry.arguments?.getInt("berita")
                     )
                 }
+                composable(
+                    Screen.Detail.route + "/{lapangan}",
+                    arguments = listOf(navArgument("lapangan") {type = NavType.IntType})
+                ){navBackStackEntry ->
+                    FieldDetailScreen(
+                        navController = navController,
+                        lapangan = navBackStackEntry.arguments?.getInt("lapangan")
+                    )
+                }
                 composable(Screen.NewsScreen.route){
                     newsScreen(navController)
                 }
@@ -117,6 +122,9 @@ fun SporkingApp() {
                     ProfileScreen(
                         onNavigateToBerandaScreen = { navController.navigate(Screen.Beranda.route) }
                     )
+                }
+                composable(Screen.Maps.route) {
+                    MapsScreen(navController = navController)
                 }
             }
         }
