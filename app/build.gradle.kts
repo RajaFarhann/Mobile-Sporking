@@ -7,6 +7,8 @@ plugins {
     id ("dagger.hilt.android.plugin")
     id("com.google.gms.google-services")
 
+//    id("com.google.devtools.ksp")
+
 }
 
 android {
@@ -36,11 +38,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -82,10 +84,47 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.dagger:hilt-android:2.48.1")
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation("com.google.android.gms:play-services-auth:21.2.0")
 
-// Tambahkan dependensi Hilt Compiler
+    // Tambahkan dependensi Hilt Compiler
+    implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
+
+
+    // Architectural Components
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
+
+    // Room
+    implementation ("androidx.room:room-runtime:2.6.1")
+//    ksp ("androidx.room:room-compiler:2.6.1")
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation ("androidx.room:room-ktx:2.6.1")
+
+    // Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    // Coroutine Lifecycle Scopes
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.2")
+
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.5.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+//    ksp ("com.github.bumptech.glide:compiler:4.12.0")
+
+    //moshi
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+    implementation("com.squareup.moshi:moshi:1.15.1")
+//    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
+    implementation("com.squareup.retrofit2:converter-moshi:1.15.1")
+    implementation("com.squareup.retrofit2:converter-gson:1.15.1")
+
 }

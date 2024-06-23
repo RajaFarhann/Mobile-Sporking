@@ -2,6 +2,8 @@ package com.example.sporkingapp.presentation.screen.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,14 +25,15 @@ import com.example.sporkingapp.presentation.component.button.ButtonComponent
 @Composable
 fun OnboardingScreen(navController: NavController){
 
-    Surface (
+    Box (
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White)
             .padding(24.dp)
     ){
         Column (
-            modifier = Modifier.fillMaxSize()
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxSize()
         ){
             Spacer(modifier = Modifier.height(250.dp))
             Image(painter = painterResource(id = R.drawable.sprorkinglogoandtext),

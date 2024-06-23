@@ -1,6 +1,10 @@
 package com.example.sporkingapp.navigation
 
 sealed class Screen(val route: String) {
+
+    //Testing
+    data object News : Screen("news")
+    //
     data object Beranda : Screen("beranda")
     data object FieldSearch : Screen("field_search")
     data object Category : Screen("category")

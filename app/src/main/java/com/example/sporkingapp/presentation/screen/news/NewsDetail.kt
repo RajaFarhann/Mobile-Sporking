@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -88,7 +89,7 @@ private fun detailNewsContent(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
-                    Text(text = newestNewsList[0].title, style = TextStyle(fontWeight = FontWeight.Medium),
+                    Text(text = newestNewsList[0].title, style = MaterialTheme.typography.headlineSmall,
                         color = colorResource(id = R.color.black), textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.height(12.dp))
