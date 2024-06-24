@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,9 +41,9 @@ fun CardSearch(
     Card(
         shape = RoundedCornerShape(12.dp),
         modifier = modifier
+            .clickable { onItemClicked(field.id) }
             .padding(16.dp)
             .wrapContentHeight()
-            .clickable { onItemClicked(field.id) }
     ) {
         Row(
             modifier = Modifier
@@ -64,16 +63,16 @@ fun CardSearch(
                         .clip(RoundedCornerShape(12.dp))
                         .align(Alignment.Center)
                 )
-                Text(
-                    text = "${field.distance} KM",
-                    fontSize = 8.sp,
-                    color = Color(warna),
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(8.dp)
-                        .background(Color.White, shape = RoundedCornerShape(8.dp))
-                        .padding(horizontal = 8.dp, vertical = 4.dp)
-                )
+//                Text(
+//                    text = "${field.distance} KM",
+//                    fontSize = 8.sp,
+//                    color = Color(warna),
+//                    modifier = Modifier
+//                        .align(Alignment.TopEnd)
+//                        .padding(8.dp)
+//                        .background(Color.White, shape = RoundedCornerShape(8.dp))
+//                        .padding(horizontal = 8.dp, vertical = 4.dp)
+//                )
             }
             Spacer(modifier = Modifier.width(16.dp))
             Column(
@@ -106,19 +105,19 @@ fun CardSearch(
                 }
             }
         }
-        Divider(color = Color(0xFFDFDFDF), thickness = 1.dp)
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(16.dp)
-        ) {
-            Text(
-                text = "Available",
-                fontSize = 12.sp,
-                color = Color(warna),
-            )
-        }
+//        Divider(color = Color(0xFFDFDFDF), thickness = 1.dp)
+//        Row (
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .background(Color.White)
+//                .padding(16.dp)
+//        ) {
+//            Text(
+//                text = "Available",
+//                fontSize = 12.sp,
+//                color = Color(warna),
+//            )
+//        }
     }
 }
 

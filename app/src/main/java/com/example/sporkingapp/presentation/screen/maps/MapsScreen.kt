@@ -51,24 +51,19 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapType
 import com.google.maps.android.compose.MapUiSettings
-import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerInfoWindow
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapsScreen(
     navController: NavController,
-    modifier: Modifier = Modifier
-) {
-    MapsContent(navController = navController, modifier = modifier)
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MapsContent(
-    navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    name: String,
+    lat: Double,
+    long: Double,
+    category: String
 ) {
     var expanded by remember { mutableStateOf(false) }
     var properties by remember { mutableStateOf(MapProperties(mapType = MapType.NORMAL, isMyLocationEnabled = false)) }
@@ -78,7 +73,7 @@ fun MapsContent(
         topBar = {
             TopAppBar(
                 title = { Text(
-                    text = "Maps",
+                    text = "$name",
                     color = Color.White,
                 ) },
                 navigationIcon = {
@@ -130,19 +125,12 @@ fun MapsContent(
             modifier = Modifier.padding(paddingValues)
         ) {
             val context = LocalContext.current
-            val infiniteLearning = LatLng(1.185234585525002, 104.10199759994163)
-            val glints = LatLng(1.1856814467765218, 104.10192439711824)
+            val field = LatLng(lat, long)
             val cameraPositionState = rememberCameraPositionState {
-                position = CameraPosition.fromLatLngZoom(infiniteLearning, 18f)
+                position = CameraPosition.fromLatLngZoom(field, 18f)
             }
             val uiSettings by remember { mutableStateOf(MapUiSettings(zoomControlsEnabled = true, myLocationButtonEnabled = true)) }
-            val iconBitmap = getResizedBitmap(context, R.drawable.computer_worker, 32, 32)
-            val routeCoordinates = listOf(
-                LatLng(1.1871266771394677, 104.10824288764569),
-                LatLng(1.1841681473109857, 104.10420110353128),
-                LatLng(1.184988959257092, 104.10159830282369),
-                LatLng(1.1852279868659894, 104.10200203014317)
-            )
+            val iconBitmap = getResizedBitmap(context, R.drawable.icon_sporking_orange_location_2, 50, 50)
             val requestPermissionLauncher = rememberLauncherForActivityResult(
                 contract = ActivityResultContracts.RequestPermission()
             ) { isGranted: Boolean ->
@@ -174,7 +162,7 @@ fun MapsContent(
                 uiSettings = uiSettings
             ) {
                 MarkerInfoWindow(
-                    state = MarkerState(infiniteLearning),
+                    state = MarkerState(field),
                     icon = BitmapDescriptorFactory.fromBitmap(iconBitmap)
                 ) {
                     Column(
@@ -185,26 +173,14 @@ fun MapsContent(
                             .background(Color.LightGray)
                             .padding(24.dp)
                     ) {
-                        Text("Infinite Learning", fontWeight = FontWeight.Bold, color = Color.White)
+                        Text("$name", fontWeight = FontWeight.Bold, color = Color.White)
                         Text(
-                            "Tempat belajar seputar teknologi",
+                            "Lapangan untuk bermain $category",
                             fontWeight = FontWeight.Medium,
                             color = Color.White
                         )
                     }
                 }
-//                Circle(
-//                    center = infiniteLearning,
-//                    clickable = true,
-//                    fillColor = Color.Blue.copy(0.3f),
-//                    radius = 100.0,
-//                    strokeColor = Color.Black,
-//                    strokeWidth = 2f,
-//                )
-                Marker(
-                    state = MarkerState(glints),
-                    title = "Glints Batam"
-                )
             }
         }
     }

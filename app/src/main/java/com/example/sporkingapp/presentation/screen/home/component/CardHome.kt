@@ -93,16 +93,16 @@ fun CardHome(
                     )
                 }
             }
-            Text(
-                text = "${field.distance} KM",
-                fontSize = 12.sp,
-                color = Color(warna),
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(22.dp)
-                    .background(Color.White, shape = RoundedCornerShape(8.dp))
-                    .padding(horizontal = 8.dp, vertical = 4.dp)
-            )
+//            Text(
+//                text = "${field.distance} KM",
+//                fontSize = 12.sp,
+//                color = Color(warna),
+//                modifier = Modifier
+//                    .align(Alignment.TopEnd)
+//                    .padding(22.dp)
+//                    .background(Color.White, shape = RoundedCornerShape(8.dp))
+//                    .padding(horizontal = 8.dp, vertical = 4.dp)
+//            )
         }
     }
 }

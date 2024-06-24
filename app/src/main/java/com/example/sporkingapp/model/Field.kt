@@ -7,5 +7,8 @@ data class Field (
     val distance: Double,
     val rating: Int,
     val photo: Int,
+    val phoneNumber: String,
+    val lat: Double,
+    val long: Double,
     val category: String
 )

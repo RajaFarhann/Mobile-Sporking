@@ -22,6 +22,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,7 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.sporkingapp.R
 import com.example.sporkingapp.data.local.dummy.DummyData
 import com.example.sporkingapp.model.Field
@@ -43,12 +45,16 @@ import com.example.sporkingapp.presentation.screen.home.component.SearchAndDropd
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BerandaScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
     lapangan: List<Field> = DummyData.FieldList,
     onNavigateToFieldSearch: () -> Unit,
     onNavigateToProfile: () -> Unit,
 ) {
-    val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route ?: "field"
+
+    val futsalLapangan = lapangan.filter { it.category == "Futsal" }
     Scaffold(
         topBar = { TopBar(
             onProfileClick = onNavigateToProfile,
@@ -128,11 +134,11 @@ fun BerandaScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(0.dp),
                 ) {
-                    items(lapangan, key = {it.id}) {
-                        CardHome(field = it){ lapangan ->
-                            navController.navigate(Screen.Detail.route + "/$lapangan")
+                    items(futsalLapangan, key = { it.id }) { field ->
+                        CardHome(field = field) { selectedField ->
+                            navController.navigate(Screen.Detail.route + "/${selectedField}")
                         }
                     }
                 }

@@ -20,6 +20,10 @@ import com.example.sporkingapp.presentation.component.bar.BottomBar
 import com.example.sporkingapp.presentation.screen.agreement.AgreementScreen
 import com.example.sporkingapp.presentation.screen.booking.BookingScreen
 import com.example.sporkingapp.presentation.screen.categoryFields.CategoryFieldsScreen
+import com.example.sporkingapp.presentation.screen.categoryFields.category.CategoryFieldsBadminton
+import com.example.sporkingapp.presentation.screen.categoryFields.category.CategoryFieldsBasket
+import com.example.sporkingapp.presentation.screen.categoryFields.category.CategoryFieldsFutsal
+import com.example.sporkingapp.presentation.screen.categoryFields.category.CategoryFieldsMinisoccer
 import com.example.sporkingapp.presentation.screen.detail.FieldDetailScreen
 import com.example.sporkingapp.presentation.screen.fieldSearch.FieldSearchScreen
 import com.example.sporkingapp.presentation.screen.home.BerandaScreen
@@ -75,23 +79,49 @@ fun SporkingApp() {
                 }
                 composable(route = Screen.Beranda.route) {
                     BerandaScreen(
+                        navController,
                         onNavigateToFieldSearch = { navController.navigate(Screen.FieldSearch.route) },
                         onNavigateToProfile = { navController.navigate(Screen.ProfileScreen.route) }
                     )
                 }
                 composable(route = Screen.FieldSearch.route) {
-                    FieldSearchScreen(onNavigateToBerandaScreen = { navController.navigate(Screen.Beranda.route) })
+                    FieldSearchScreen(
+                        navController,
+                        onNavigateToBerandaScreen = { navController.navigate(Screen.Beranda.route) }
+                    )
                 }
                 composable(route = Screen.Category.route) {
-                    CategoryFieldsScreen()
+                    CategoryFieldsScreen(navController)
                 }
                 composable(route = Screen.Pemesanan.route) {
                     BookingScreen()
                 }
                 composable(route = Screen.Komunitas.route) {
                     BerandaScreen(
+                        navController,
                         onNavigateToFieldSearch = { navController.navigate(Screen.FieldSearch.route) },
                         onNavigateToProfile = { navController.navigate(Screen.ProfileScreen.route) },
+                    )
+                }
+                composable(
+                    route = "mapsContent/{name}/{lat}/{long}/{category}",
+                    arguments = listOf(
+                        navArgument("name") { type = NavType.StringType },
+                        navArgument("lat") { type = NavType.StringType },
+                        navArgument("long") { type = NavType.StringType },
+                        navArgument("category") { type = NavType.StringType }
+                    )
+                ) { backStackEntry ->
+                    val name = backStackEntry.arguments?.getString("name") ?: ""
+                    val lat = backStackEntry.arguments?.getString("lat")?.toDoubleOrNull() ?: 0.0
+                    val long = backStackEntry.arguments?.getString("long")?.toDoubleOrNull() ?: 0.0
+                    val category = backStackEntry.arguments?.getString("category") ?: ""
+                    MapsScreen(
+                        navController = navController,
+                        name = name,
+                        lat = lat,
+                        long = long,
+                        category = category
                     )
                 }
                 composable(
@@ -123,8 +153,17 @@ fun SporkingApp() {
                         onNavigateToBerandaScreen = { navController.navigate(Screen.Beranda.route) }
                     )
                 }
-                composable(Screen.Maps.route) {
-                    MapsScreen(navController = navController)
+                composable(Screen.CategoryFutsal.route){
+                    CategoryFieldsFutsal(navController)
+                }
+                composable(Screen.CategoryBadminton.route){
+                    CategoryFieldsBadminton(navController)
+                }
+                composable(Screen.CategoryMinisoccer.route){
+                    CategoryFieldsMinisoccer(navController)
+                }
+                composable(Screen.CategoryBasket.route){
+                    CategoryFieldsBasket(navController)
                 }
             }
         }

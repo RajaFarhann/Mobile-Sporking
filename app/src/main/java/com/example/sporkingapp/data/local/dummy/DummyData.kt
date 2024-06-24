@@ -13,6 +13,9 @@ object DummyData {
             distance = 0.1,
             rating = 5,
             photo = R.drawable.lapangan_futsal_ikan_daun,
+            phoneNumber = "0778461149",
+            lat = 1.1292417256123504,
+            long = 104.0478539953986,
             category = "Futsal"
         ),
         Field(
@@ -22,6 +25,9 @@ object DummyData {
             distance = 1.5,
             rating = 3,
             photo = R.drawable.lapangan_futsal_m_barca,
+            phoneNumber = "0778421630",
+            lat = 1.1004511756941942,
+            long = 104.06988015991185,
             category = "Futsal"
         ),
         Field(
@@ -31,6 +37,9 @@ object DummyData {
             distance = 2.2,
             rating = 2,
             photo = R.drawable.lapangan_futsal_hang_jebat_batam,
+            phoneNumber = "",
+            lat = 1.1292817633771681,
+            long = 104.10703498816716,
             category = "Futsal"
         ),
         Field(
@@ -40,6 +49,9 @@ object DummyData {
             distance = 1.2,
             rating = 5,
             photo = R.drawable.lapangan_futsal_sport_hill_centre,
+            phoneNumber = "+628117721882",
+            lat = 1.1172533042554074,
+            long = 104.09721111761075,
             category = "Futsal"
         ),
         Field(
@@ -49,6 +61,9 @@ object DummyData {
             distance = 3.2,
             rating = 4,
             photo = R.drawable.lapangan_futsal_go_futsal,
+            phoneNumber = "+628117036090",
+            lat = 1.162258526636398,
+            long = 104.03900682933364,
             category = "Futsal"
         ),
         Field(
@@ -58,7 +73,10 @@ object DummyData {
             distance = 8.0,
             rating = 3,
             photo = R.drawable.lapangan_gor_orchid_park,
-            category = "BuluTangkis"
+            phoneNumber = "+6285100059999",
+            lat = 1.1219857929746395,
+            long = 104.02442599987448,
+            category = "Bulu Tangkis"
         ),
         Field(
             id = 7,
@@ -67,7 +85,10 @@ object DummyData {
             distance = 7.2,
             rating = 1,
             photo = R.drawable.lapangan_gor_batu_batam,
-            category = "BuluTangkis"
+            phoneNumber = "+6281990920505",
+            lat = 1.1239140112785264,
+            long = 104.01288632929824,
+            category = "Bulu Tangkis"
         ),
         Field(
             id = 8,
@@ -76,7 +97,10 @@ object DummyData {
             distance = 1.5,
             rating = 4,
             photo = R.drawable.lapangan_gor_elite_badminton,
-            category = "BuluTangkis"
+            phoneNumber = "+628116911168",
+            lat = 1.1605047154004975,
+            long = 104.04090198831304,
+            category = "Bulu Tangkis"
         ),
         Field(
             id = 9,
@@ -85,7 +109,10 @@ object DummyData {
             distance = 2.5,
             rating = 2,
             photo = R.drawable.lapangan_gor_temenggung,
-            category = "BuluTangkis"
+            phoneNumber = "+628127000463",
+            lat = 1.089083933894868,
+            long = 104.03170839987105,
+            category = "Bulu Tangkis"
         ),
         Field(
             id = 10,
@@ -94,7 +121,10 @@ object DummyData {
             distance = 10.0,
             rating = 3,
             photo = R.drawable.lapangan_gor_tiban,
-            category = "BuluTangkis"
+            phoneNumber = "+6281276669995",
+            lat = 1.1102257557841089,
+            long = 103.957735895086,
+            category = "Bulu Tangkis"
         ),
         Field(
             id = 11,
@@ -103,7 +133,10 @@ object DummyData {
             distance = 9.0,
             rating = 4,
             photo = R.drawable.lapangan_sepak_bola_batam_arena,
-            category = "MiniSoccer"
+            phoneNumber = "+6282145537256",
+            lat = 1.0241204627699871,
+            long = 104.01168958973173,
+            category = "Mini Soccer"
         ),
         Field(
             id = 12,
@@ -112,7 +145,10 @@ object DummyData {
             distance = 2.2,
             rating = 3,
             photo = R.drawable.lapangan_sepak_bola_alpha,
-            category = "MiniSoccer"
+            phoneNumber = "+628117767188",
+            lat = 1.0414593197746136,
+            long = 103.99363054710693,
+            category = "Mini Soccer"
         ),
         Field(
             id = 13,
@@ -121,6 +157,9 @@ object DummyData {
             distance = 2.0,
             rating = 4,
             photo = R.drawable.lapangan_basket_palm_spring,
+            phoneNumber = "+6288279005407",
+            lat = 1.1230547929960286,
+            long = 104.02785961494024,
             category = "Basket"
         ),
         Field(
@@ -130,6 +169,9 @@ object DummyData {
             distance = 4.2,
             rating = 5,
             photo = R.drawable.lapangan_basket_mj_arena,
+            phoneNumber = "+628127003328",
+            lat = 1.1535214041722137,
+            long = 104.04199819981733,
             category = "Basket"
         ),
         Field(
@@ -139,6 +181,9 @@ object DummyData {
             distance = 1.5,
             rating = 4,
             photo = R.drawable.lapangan_basket_guard_arena,
+            phoneNumber = "+6287817719372",
+            lat = 1.1245432975681602,
+            long = 104.04920847036475,
             category = "Basket"
         ),
         Field(
@@ -148,6 +193,9 @@ object DummyData {
             distance = 1.5,
             rating = 4,
             photo = R.drawable.lapangan_basket_tm_arena,
+            phoneNumber = "+6281911111705",
+            lat = 1.127581063385359,
+            long = 104.0503982409339,
             category = "Basket"
         ),
         Field(
@@ -157,6 +205,9 @@ object DummyData {
             distance = 10.0,
             rating = 5,
             photo = R.drawable.lapangan_basket_hitest_arena,
+            phoneNumber = "+628153036000",
+            lat = 1.1096451704337533,
+            long = 104.0392743170076,
             category = "Basket"
         )
     )

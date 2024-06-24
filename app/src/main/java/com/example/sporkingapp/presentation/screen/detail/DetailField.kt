@@ -1,5 +1,7 @@
 package com.example.sporkingapp.presentation.screen.detail
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,14 +22,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -36,9 +43,8 @@ import androidx.navigation.NavController
 import com.example.sporkingapp.R
 import com.example.sporkingapp.data.local.dummy.DummyData
 import com.example.sporkingapp.model.Field
-import com.example.sporkingapp.navigation.Screen
-import com.example.sporkingapp.presentation.component.bar.TopBar
 import com.example.sporkingapp.presentation.screen.home.component.RatingBar
+import com.example.sporkingapp.ui.theme.mainOrange
 
 @Composable
 fun FieldDetailScreen(
@@ -54,36 +60,59 @@ fun FieldDetailScreen(
     Column (
         modifier = Modifier
     ){
-        FieldDetailContent(newLapanganList = newLapanganList, navController = navController, onNavigateToBerandaScreen = { navController.navigate(Screen.Beranda.route) })
+        FieldDetailContent(newLapanganList = newLapanganList, navController = navController)
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun FieldDetailContent(
+fun FieldDetailContent(
     newLapanganList: List<Field>,
     navController: NavController,
     modifier: Modifier = Modifier,
-    onNavigateToBerandaScreen: () -> Unit
 ) {
+    val name = newLapanganList[0].name
+    val price = newLapanganList[0].price
+    val distance = newLapanganList[0].distance
+    val rating = newLapanganList[0].rating
+    val photo = newLapanganList[0].photo
+    val category = newLapanganList[0].category
+    val phoneNumber = newLapanganList[0].phoneNumber
+    val lat = newLapanganList[0].lat
+    val long = newLapanganList[0].long
+
     Scaffold(
         topBar = {
-            TopBar(
-                showTitle = false,
-                showBackButton = true,
-                onBackClick = onNavigateToBerandaScreen,
-                showProfileImage = false,
-                showChatIcon = false,
-                showNotificationIcon = false
+            TopAppBar(
+                title = { Text(
+                    text = "",
+                    color = Color.White,
+                ) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Image(
+                            painter = painterResource(id = R.drawable.icon_arrow_back),
+                            contentDescription = "Back",
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = mainOrange)
             )
         },
         bottomBar = {
-            BottomBarDetail(navController = navController)
+            BottomBarDetail(
+                navController = navController,
+                price = "$price" ,
+                phoneNumber = "$phoneNumber" ,
+                message = "Halo, Saya ingin menyewa lapangan $category di $name"
+            )
         },
         modifier = modifier
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             Image(
-                painter = painterResource(id = R.drawable.detail_lapangan),
+                painter = painterResource(id = photo),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -104,29 +133,30 @@ private fun FieldDetailContent(
             ) {
                 Spacer(modifier = Modifier.height(220.dp))
                 Row (
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
+//                    modifier = Modifier
+//                        .align(Alignment.CenterHorizontally)
                 ) {
                     Text(
-                        text = newLapanganList[0].name,
+                        text = "$name",
                         fontSize = 20.sp,
                         color = Color(0xFFFD7900),
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier
+                            .padding(start = 40.dp)
                     )
-                    Spacer(modifier = Modifier.width(160.dp))
-                    Text(
-                        text = "1.6KM",
-                        fontSize = 12.sp,
-                        color = Color(0xFFFD7900),
-                        modifier = Modifier
-                            .background(Color(0x238F8C95), shape = RoundedCornerShape(8.dp))
-                            .padding(horizontal = 8.dp, vertical = 4.dp)
-                    )
+//                    Spacer(modifier = Modifier.width(20.dp))
+//                    Text(
+//                        text = "$distance",
+//                        fontSize = 12.sp,
+//                        color = Color(0xFFFD7900),
+//                        modifier = Modifier
+//                            .background(Color(0x238F8C95), shape = RoundedCornerShape(8.dp))
+//                            .padding(horizontal = 8.dp, vertical = 4.dp)
+//                    )
                 }
                 Spacer(modifier = Modifier.height(5.dp))
                 RatingBar(
-                    rating = 5,
+                    rating = rating,
                     modifier = Modifier
                         .padding(start = 40.dp)
                 )
@@ -137,7 +167,7 @@ private fun FieldDetailContent(
                         .size(width = 360.dp, height = 200.dp)
                         .align(Alignment.CenterHorizontally)
                         .clickable {
-                            navController.navigate(Screen.Maps.route)
+                            navController.navigate("mapsContent/$name/$lat/$long/$category")
                         }
                 )
                 Divider(
@@ -206,8 +236,13 @@ private fun FieldDetailContent(
 
 @Composable
 fun BottomBarDetail(
-    navController: NavController
+    navController: NavController,
+    price: String,
+    phoneNumber: String,
+    message: String
 ) {
+    val context = LocalContext.current
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -228,7 +263,7 @@ fun BottomBarDetail(
                     color = Color(0xFFFD7900)
                 )
                 Text(
-                    text = "Rp.150.000",
+                    text = "Rp.$price",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFFFD7900)
@@ -236,7 +271,13 @@ fun BottomBarDetail(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Button(
-                onClick = { /* Handle button click */ },
+                onClick = {
+                    val url = "https://wa.me/$phoneNumber?text=${Uri.encode(message)}"
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse(url)
+                    }
+                    context.startActivity(intent)
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFFFD7900) // Orange color
                 ),
@@ -254,3 +295,4 @@ fun BottomBarDetail(
         }
     }
 }
+

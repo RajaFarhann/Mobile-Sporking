@@ -119,32 +119,31 @@ fun BottomBar(
                 )
             }
         }
-
-        IconButton(
-            onClick = {
-                selectedTab = 3
-                navController.navigate(Screen.Pemesanan.route)
-            },
-            modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
-        ) {
-            Column(
-                modifier = Modifier.fillMaxWidth(), // Atau sesuaikan dengan kebutuhan
-                horizontalAlignment = Alignment.CenterHorizontally, // Menjadikan semua anak di dalam Column terpusat secara horizontal
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.icon_calender),
-                    contentDescription = "Pemesanan",
-                    modifier = Modifier.size(20.dp),
-                    colorFilter = ColorFilter.tint(if (selectedTab == 3) orangeColor else textColor)
-                )
-                Text(
-                    text = "Pemesanan",
-                    fontSize = 10.sp,
-                    color = if (selectedTab == 3) orangeColor else textColor
-                )
-            }
-        }
+//        IconButton(
+//            onClick = {
+//                selectedTab = 3
+//                navController.navigate(Screen.Pemesanan.route)
+//            },
+//            modifier = Modifier.weight(1f) // Memastikan tombol memenuhi lebar yang sama
+//        ) {
+//            Column(
+//                modifier = Modifier.fillMaxWidth(), // Atau sesuaikan dengan kebutuhan
+//                horizontalAlignment = Alignment.CenterHorizontally, // Menjadikan semua anak di dalam Column terpusat secara horizontal
+//                verticalArrangement = Arrangement.spacedBy(4.dp)
+//            ) {
+//                Image(
+//                    painter = painterResource(id = R.drawable.icon_calender),
+//                    contentDescription = "Pemesanan",
+//                    modifier = Modifier.size(20.dp),
+//                    colorFilter = ColorFilter.tint(if (selectedTab == 3) orangeColor else textColor)
+//                )
+//                Text(
+//                    text = "Pemesanan",
+//                    fontSize = 10.sp,
+//                    color = if (selectedTab == 3) orangeColor else textColor
+//                )
+//            }
+//        }
 //        IconButton(
 //            onClick = {
 //                selectedTab = 4

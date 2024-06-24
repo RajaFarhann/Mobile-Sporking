@@ -20,4 +20,8 @@ sealed class Screen(val route: String) {
     data object AccountScreen: Screen("account_screen")
     data object SecurityNotify: Screen("security_notify")
     data object Maps : Screen("maps")
+    data object CategoryFutsal : Screen("category_futsal")
+    data object CategoryBadminton : Screen("category_badminton")
+    data object CategoryMinisoccer : Screen("category_minisoccer")
+    data object CategoryBasket : Screen("category_basket")
 }
