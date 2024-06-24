@@ -1,12 +1,8 @@
 package com.example.sporkingapp.utils
 
-
-
-sealed class ResourceState <T> {
-
-    class Loading<T>: ResourceState<T>()
-    data class Success<T> (val data:T): ResourceState<T>()
-    data class Error<T> (val error: String): ResourceState<T>()
-
+sealed class ResourceState<T>(val data: T? = null, val message: String? = null) {
+    class Success<T>(data: T) : ResourceState<T>(data)
+    class Error<T>(message: String, data: T? = null) : ResourceState<T>(data, message)
+    class Loading<T>(data: T? = null) : ResourceState<T>(data)
 
 }

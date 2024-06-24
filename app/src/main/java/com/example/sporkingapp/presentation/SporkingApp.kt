@@ -7,7 +7,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.internal.composableLambda
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
@@ -18,7 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.sporkingapp.navigation.Screen
 import com.example.sporkingapp.presentation.component.bar.BottomBar
-import com.example.sporkingapp.presentation.screen.NEWS.NewsScreen
+import com.example.sporkingapp.presentation.screen.news.NewsScreen
 import com.example.sporkingapp.presentation.screen.agreement.AgreementScreen
 import com.example.sporkingapp.presentation.screen.booking.BookingScreen
 import com.example.sporkingapp.presentation.screen.categoryFields.CategoryFieldsScreen
@@ -27,7 +26,6 @@ import com.example.sporkingapp.presentation.screen.fieldSearch.FieldSearchScreen
 import com.example.sporkingapp.presentation.screen.home.BerandaScreen
 import com.example.sporkingapp.presentation.screen.login.LoginScreen
 import com.example.sporkingapp.presentation.screen.news.newsDetailScreen
-import com.example.sporkingapp.presentation.screen.news.newsScreen
 import com.example.sporkingapp.presentation.screen.onboarding.OnboardingScreen
 import com.example.sporkingapp.presentation.screen.profile.ProfileScreen
 import com.example.sporkingapp.presentation.screen.signup.signUpScreen
@@ -54,11 +52,11 @@ fun SporkingApp() {
         Box(modifier = Modifier.padding(innerPadding)) {
             NavHost(
                 navController = navController,
-                startDestination = Screen.News.route,
+                startDestination = Screen.NewsScreen.route,
                 modifier = Modifier
             ) {
                 // Testing Area
-                composable(route = Screen.News.route){
+                composable(Screen.NewsScreen.route){
                     NewsScreen()
                 }
                 //
@@ -115,12 +113,12 @@ fun SporkingApp() {
                         berita = navBackStackEntry.arguments?.getInt("berita")
                     )
                 }
-                composable(Screen.NewsScreen.route){
-                    newsScreen(navController)
-                }
-                composable(Screen.NewsScreen.route){
-                    newsScreen(navController)
-                }
+//                composable(Screen.NewsScreen.route){
+//                    newsScreen(navController)
+//                }
+//                composable(Screen.NewsScreen.route){
+//                    newsScreen(navController)
+//                }
                 composable(Screen.ProfileScreen.route){
                     ProfileScreen(navController)
                 }

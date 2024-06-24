@@ -1,87 +1,78 @@
+
+
 package com.example.sporkingapp.presentation.screen.news
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.pager.PageSize
+import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.sporkingapp.R
-import com.example.sporkingapp.data.local.dummy.DummyData
-import com.example.sporkingapp.model.News
-import com.example.sporkingapp.navigation.Screen
-import com.example.sporkingapp.presentation.component.text.BoldTextOrangeComponent
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.sporkingapp.model.news.NewsViewModel
+import com.example.sporkingapp.presentation.screen.news.component.Loader
+import com.example.sporkingapp.presentation.screen.news.component.NewsRowComp
 import com.example.sporkingapp.presentation.screen.news.component.newsColumn
 
-@Composable
-fun newsScreen(
-    navController: NavController,
-    modifier: Modifier = Modifier,
-    berita: List<News> = DummyData.newsList
-){
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route ?: "news"
 
-    Scaffold (  ){innerPadding ->
-        Surface(
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun NewsScreen(
+    newsViewModel: NewsViewModel = hiltViewModel(),
+) {
+
+    val state = newsViewModel.news.value
+
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        initialPageOffsetFraction = 0f
+    ) {
+        state.success.size
+    }
+
+
+    VerticalPager(
+        state = pagerState,
+        modifier = Modifier.fillMaxSize(),
+        pageSize = PageSize.Fill,
+        pageSpacing = 8.dp
+    ) { page: Int ->
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
-        ){
-            Box (
-                modifier = modifier
+                .padding(24.dp)
+        ) {
+            Column(
+                modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 24.dp)
-            ){
-                Column (
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize()
-                ){
+            ) {
+                if (state.loading) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                } else if (state.error.isNotEmpty()) {
                     Text(
-                        text = "News",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        color = Color(0xFFFD7900)
+                        text = state.error,
+                        color = Color.Red,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Box (
-                        modifier = Modifier
-                            .fillMaxSize()
-                    ){
-                        LazyColumn (
-                            verticalArrangement = Arrangement.spacedBy(8.dp),
-                            modifier = modifier
-                        ){
-                            items(berita, key = {it.id}){
-                                newsColumn(news = it) { newsId ->
-                                    navController.navigate(Screen.NewsDetail.route + "/$newsId")
-                                }
-                            }
-                        }
+                } else {
+                    state.success.getOrNull(page)?.let { article ->
+                        NewsRowComp(page = page, article = article)
                     }
                 }
             }
         }
     }
+
 }

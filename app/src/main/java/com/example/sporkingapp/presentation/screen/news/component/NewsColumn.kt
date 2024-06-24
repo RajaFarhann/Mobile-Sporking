@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -26,20 +27,23 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.sporkingapp.R
+import com.example.sporkingapp.data.test.Result
 import com.example.sporkingapp.model.News
 import com.example.sporkingapp.ui.theme.SporkingAppTheme
 
 @Composable
 fun newsColumn(
-    news: News,
+    page: Int, article: Result,
     modifier: Modifier = Modifier,
     onItemClicked: (Int) -> Unit
 ){
     Row (
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxWidth()
-            .clickable {onItemClicked(news.id)}
+        modifier = modifier
+            .fillMaxWidth()
+//            .clickable { onItemClicked(news.id) }
     ){
         Card(
             modifier = Modifier
@@ -53,43 +57,55 @@ fun newsColumn(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(2.dp)
             ){
-                Image(painter = painterResource(id = news.newsImageID),
-                    contentDescription = news.title,
-                    contentScale = ContentScale.Crop,
+
+                AsyncImage(
                     modifier = Modifier
                         .size(120.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                )
+                        .clip(RoundedCornerShape(8.dp)),
+                    model = article.image_url,
+                    contentScale = ContentScale.Crop,
+                    contentDescription = "")
+                
                 Spacer(modifier = Modifier.width(16.dp))
+                
                 Column {
-                    Text(text = news.title, style = MaterialTheme.typography.titleMedium)
+                    Text(text = article.title, style = MaterialTheme.typography.titleMedium)
                     Spacer(modifier = Modifier.height(12.dp))
                     Row {
-//                Text(text = news.date)
-                        Text(text = "- ${news.date}", color = Color.Gray)
+                        Text(text = article.pubDate, color = Color.Gray)
                     }
                 }
+
+
+//                AsyncImage(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .height(240.dp)
+//                        .wrapContentHeight(),
+//                    model = article.image_url,
+//                    contentDescription = "",
+//                    contentScale = ContentScale.Crop
+//                )
+
+//                Image(painter = painterResource(id = news.newsImageID),
+//                    contentDescription = news.title,
+//                    contentScale = ContentScale.Crop,
+//                    modifier = Modifier
+//                        .size(120.dp)
+//                        .clip(RoundedCornerShape(8.dp))
+//                )
+//                Spacer(modifier = Modifier.width(16.dp))
+//                Column {
+//                    Text(text = news.title, style = MaterialTheme.typography.titleMedium)
+//                    Spacer(modifier = Modifier.height(12.dp))
+//                    Row {
+////                Text(text = news.date)
+//                        Text(text = "- ${news.date}", color = Color.Gray)
+//                    }
+//                }
             }
 
         }
 
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun newsColumnPreview(){
-    SporkingAppTheme {
-        newsColumn(
-            news = News(
-                1,
-                "Manchester United Shocks Manchester City in English FA Cup Final",
-                "20/8/2023",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa massa ultricies mi quis hendrerit dolor magna. Lorem sed risus ultricies tristique nulla aliquet enim tortor. Quis auctor elit sed vulputate mi sit amet mauris.",
-                R.drawable.p1
-            ), onItemClicked = {newsId ->
-                println("News: $newsId")
-            }
-        )
     }
 }
